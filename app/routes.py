@@ -37,10 +37,6 @@ def index():
     return render_template("base.html", showHtml=showHtml)
 
 
-@app.get('/view_draw')
-def view_draw():
-    pass
-
 @app.get('/all_users')
 def getAll_users():
     showHtml = {"form": 1, "show_users": 0}
