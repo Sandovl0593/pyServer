@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../static/home.css">
+    <link rel="stylesheet" href="https://bootswatch.com/5/darkly/bootstrap.min.css">
+</head>
+<body>
+
+    <nav class="navbar-expand-lg navbar-dark bg-primary">
+        <div class="navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="list-navbar">
+                    <a class="nav-link" href="/all_users">Show all users</a>
+                    <a class="nav-link" href="/delete_all">Delete all users</a>
+                </li>   
+            </ul>
+        </div>
+    </nav>
+
+    {% if showHtml.error %}
+    <nav class="error" >
+        {{ showHtml.error }}}
+    </nav>
+    {% endif%}
+
+    {% if showHtml.form %}
+    <div id="form-init">
+        <div id="title"><h3>Forma tu nombre con pixeles</h3></div>
+
+        <div><form id="formul" action="/" method="post">
+            <label for="username">Ingrese tu username: </label><br>
+            <input id="username" class="form-control" type="text" name="username" required/><br>
+
+            <label for="country">Ingrese tu pais: </label><br>
+            <input id="country" class="form-control" type="text" name="country" required/><br>
+
+            <label for="color">Rellena tu color: </label><br>
+            <input class="form-control" type="color" id="color" name="color"/><br>
+
+            <button type="submit" class="btn btn-primary">Visualiza tu nombre</button>
+
+        </form></div>
+    </div>
+    {% endif %}
+
+    {% if showHtml.table %}
+    <div class="message">
+        <table class="sty_tb">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th style="width:100px" >Username</th>
+                <th>Pais</th>
+                <th style="width:100px">Color</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for user in all_users %}
+                <tr>
+                <td>{{ user.id }}</td>
+                <td style="width:100px" >{{ user.username }}</td>
+                <td>{{ user.country }}</td>
+                <td style="width:100px" >{{ user.color }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    {% if showHtml.new_draw %}
+    <div class="message">
+        <h2> Nuevo draw registrado por: </h2>
+        <h4> {{ showHtml.username }}</h4><br>
+        <h4> {{ showHtml.country }}</h4><br>
+        <h4> {{ showHtml.color }}</h4><br>
+    </div>
+    {% endif %}
+
+    <script src="../static/request.js"></script>
+</body>
+</html>
